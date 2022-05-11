@@ -60,6 +60,15 @@ For production deployments it is recommended to consider using a git org where y
 The provided GitOps scripts may require some modifications if using another git online service or private git deployment.
 
 # Customising the Management cluster configuration
+## Step 0: Deploy the Management base cluster
+This lab uses VM primarily for the reason that the physical hardware at hand did not have enough CPU resources to allow all operators including ACM observability (not deployed in current release od the lab). The VM is on a physical machine that has a 10 core i9 (20 vCPU) so this hypervisor is effectively 200% oversubscribed as the VM is given 40 CPU. A physical machine with a 16+ core (32+ vCPU) CPU will likely also do.
+
+Whether a VM or BM is used for the Management cluster, it **must** be installed by IPI BM or Assisted-Installer as the bare-metal host operator is required.
+
+The configuration deployed by this lab release assumes SNO and therefore deploys ODF-LVM (tech-preview) for central storage. For a multi-node management cluster ODF will be required and will be part of future releases. The GitOps code for full ODF is there but the management cluster configuration blueprint is tuned for ODF-LVM SNO.
+
+The installation of the day-0 management  base cluster is beyond the scope of this set of instructions as it is believed to be well known to users and documented in OCP documentation. 
+
 ## Step 1: Edit Global values (/global/values.yaml)
 Either create your own new repository or fork the supplied repository so you can customise the global/values.yaml file for your lab environment.
 
@@ -111,3 +120,4 @@ git submodule add https://github.com/openshift-telco/bp-common.lab.diktio.net.gi
 ```bash
 git submodule add <URL_to_your_values_repo> values
 ```
+## Step 4: Configure the Management cluster via GitOps
