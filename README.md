@@ -59,7 +59,7 @@ For production deployments it is recommended to consider using a git org where y
 
 The provided GitOps scripts may require some modifications if using another git online service or private git deployment.
 
-# Customising the deployment
+# Customising the Management cluster configuration
 ## Step 1: Edit Global values (/global/values.yaml)
 Either create your own new repository or fork the supplied repository so you can customise the global/values.yaml file for your lab environment.
 
@@ -80,7 +80,7 @@ Parameters you must customise:
 - mgmt.name - Name of the cluster.
 - mgmt.git_url - The URL to your management cluster repository.
 - mgmt.values_location - Replace the FQDN to  your management clusters FQDN (/values/<MGMT_FQDN>/values.yaml).
-- mgmt.nodes.masters[name] - The GQDN of your SNO node.
+- mgmt.nodes.masters[name] - The FQDN of your SNO node.
 - mgmt.os_images.root_fs_img_url - IP address of local HTTP server else uncomment Internet URL line.
 - mgmt.os_images.root_fs_iso_url - IP address of local HTTP server else uncomment Internet URL line.
 - mgmt.bmh.root_fs_img_url - IP address of local HTTP server else uncomment Internet URL line.
