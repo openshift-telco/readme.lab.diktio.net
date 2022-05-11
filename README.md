@@ -77,17 +77,33 @@ Parameters you must customise:
 - mgmt.git_url - The URL to your management cluster repository.
 - mgmt.values_location - Replace the FQDN to  your management clusters FQDN (/values/<MGMT_FQDN>/values.yaml).
 - mgmt.nodes.masters[name] - The GQDN of your SNO node.
+- mgmt.os_images.root_fs_img_url - IP address of local HTTP server else uncomment Internet URL line.
+- mgmt.os_images.root_fs_iso_url - IP address of local HTTP server else uncomment Internet URL line.
+- mgmt.bmh.root_fs_img_url - IP address of local HTTP server else uncomment Internet URL line.
 
-# Management Cluster : manage.lab.diktio.net
+## Step 3: Create Management Cluster Repository (manage.lab.diktio.net)
 
-ODF-LVM
-SNO
+Start with a blank repository:
+```bash
+cd <repository_path>
+mkdir -p clusters
 
-## Creating repository
+cp -r ../mgmt.manage/lab/diktio.net/deploy.sh \
+  ../mgmt.manage/lab/diktio.net/gitops-push-operator-mirror .
 
-### Blueprint for SNO Management Hub cluster (connected environment)
+```
+Now link the blueprints:
+
+- **Blueprint for SNO Management Hub cluster**
+```bash
 git submodule add https://github.com/openshift-telco/bp-mgmt-sno-acm.lab.diktio.net.git bp-mgmt
-### Mapping environment and region wide Helm values.yaml files
-git submodule add https://github.com/openshift-telco/values-global-lab.diktio.net.git values
-### Mapping to environment wide common configurations and worker node blueprints
+```
+
+- **Mapping to environment wide common configurations and worker node blueprints**
+```bash
 git submodule add https://github.com/openshift-telco/bp-common.lab.diktio.net.git bp-common
+```
+- **Mapping environment and region wide Helm values.yaml files**
+```bash
+git submodule add <URL_to_your_values_repo> values
+```
