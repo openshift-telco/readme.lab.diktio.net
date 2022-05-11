@@ -25,7 +25,11 @@ The topology of  the lab is as illustrated below:
 ---
 
 - SNO Management cluster:
-    - VM - 40 x vCPU, 64GB RAM
+    - VM 
+        - 40 x vCPU
+        - 64GB RAM
+        - 128GB OS disk
+        - 768GB ODF-LVM disk
     - Deployed by Assisted-Installer SaaS (https://console.redhat.com/openshift/)
     - OCP 4.10.11
 - Compact cluster:
