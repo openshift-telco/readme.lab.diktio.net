@@ -232,3 +232,21 @@ git push
 </p>
 
 ---
+# Repository Links
+## Global and Regional values.yaml files:
+https://github.com/openshift-telco/values-global-lab.diktio.net
+
+## Environment wide configurations and Node profiles:
+https://github.com/openshift-telco/bp-common.lab.diktio.net
+
+## Blueprint for Management (Hub) cluster configuration profile type SNO:
+https://github.com/openshift-telco/bp-mgmt-sno-acm.lab.diktio.net
+
+## Blueprint for target cluster profile type compact (3-node):
+https://github.com/openshift-telco/bp-cluster-compact-acm-core.lab.diktio.net
+
+## Management cluster repository:
+https://github.com/openshift-telco/mgmt-manage.lab.diktio.net
+
+## Target compact cluster repository:
+https://github.com/openshift-telco/cluster-compact.lab.diktio.net
