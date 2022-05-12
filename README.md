@@ -216,3 +216,19 @@ git commit -a -m "Deploy Target CLuster"
 git push
 ```
 
+# Git Submodule Concept
+
+---
+<p align="center">
+  <img src="slides/git_submodules.png" alt="drawing" width="666"/>
+</p>
+
+---
+# Helm Values Build
+
+---
+<p align="center">
+  <img src="slides/values.png" alt="drawing" width="666"/>
+</p>
+
+---
