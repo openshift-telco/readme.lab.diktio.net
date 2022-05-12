@@ -101,8 +101,8 @@ Start with a blank repository:
 cd <repository_path>
 mkdir -p clusters
 
-cp -r ../mgmt.manage/lab/diktio.net/deploy.sh \
-  ../mgmt.manage/lab/diktio.net/gitops-push-operator-mirror .
+cp -r ../mgmt-manage.lab.diktio.net/deploy.sh \
+  ../mgmt-manage.lab.diktio.net/gitops-push-operator-mirror .
 
 ```
 Now link the blueprints:
@@ -122,7 +122,8 @@ git submodule add <URL_to_your_values_repo> values
 ```
 ## Step 4: Configure the Management cluster via GitOps
 At this point the values repository should be updated and committed **and** all submodules updated for the management cluster.
-Start with a blank repository:
+
+Update the repositories:
 ```bash
 cd <repository_path>/bp-mgmt
 git pull
@@ -137,6 +138,8 @@ cd ../
 git commit -a -m "blueprint sync"
 git push
 ```
+
+## Step 5: Kick off the Management cluster configuration
 To kick off the deployment, you will need to have the Helm 3 CLI tool installed on your machine. This can be downloaded form https://console.redhat.com/openshift/downloads under the "Developer tools" section. 
 
 Now kick off deployment with the deploy.sh script that runs 2 helm install commands to install the Openshift-gitops operator and configure it with a minimal config to start the pull from the repository and start configuring itself.
@@ -145,3 +148,71 @@ Now kick off deployment with the deploy.sh script that runs 2 helm install comma
 cd <repository_path>
 bash deploy.sh <FQDN_management_cluster>
 ```
+# Customising the target cluster deployment
+## Step 1: Create Target Cluster Repository (cluster-compact.lab.diktio.net)
+
+Start with a blank repository:
+```bash
+cd <repository_path>
+mkdir -p workers
+
+cp -r ../cluster-compact.lab.diktio.net/values.yaml .
+```
+### Now link the blueprints:
+
+- **Blueprint for SNO Management Hub cluster**
+```bash
+git submodule add https://github.com/openshift-telco/bp-cluster-compact-acm-core.lab.diktio.net.git bp-cluster
+```
+
+- **Mapping to environment wide common configurations and worker node blueprints**
+```bash
+git submodule add https://github.com/openshift-telco/bp-common.lab.diktio.net.git bp-common
+```
+- **Mapping environment and region wide Helm values.yaml files**
+```bash
+git submodule add <URL_to_your_values_repo> values
+```
+## Step 2: Customise the values.yaml for the target cluster
+
+### Parameters you must customise:
+- cluster.name - Cluster name.
+- cluster.api_vip - API VIP.
+- cluster.ingress_vip - Ingres VIP.
+- cluster.default_router - Local default-router. 
+- cluster.install_mirror_name - OCP version to install. Must match the global.mirror.list.name you want.
+- cluster.nodes.masters[boot_dev_hint] (each node) - The desired disk to install RHCOS
+- cluster.nodes.masters[IP] (each node) - The static IP address of the given node.
+- cluster.nodes.masters.interfaces[LIST] (each node) - List all interfaces on each node making sure the primary cluster-network interface is 1st in the list.
+- cluster.nodes.masters[bmc_username] (each node) - Username for BMC access.
+- cluster.nodes.masters[bmc_password] (each node) - Passowrd for BMC access.
+- cluster.nodes.masters[bmc_address] (each node) - URL for nodes Redfish access.
+
+## Step 3: Deploy the target cluster via GitOps
+At this point the values repository should be updated and committed **and** all submodules updated for the target cluster.
+
+Update the repositories:
+```bash
+cd <target_repository_path>/bp-cluster
+git pull
+
+cd ../bp-common
+git pull
+
+cd ../values
+git pull
+
+cd ../
+git commit -a -m "blueprint sync"
+git push
+```
+Kick of the deployment:
+```bash
+cd <management_repository_path>
+mkdir -p clusters/<FQDN_Target_CLuster>
+touch clusters/<FQDN_Target_CLuster>/deploy
+
+git commit -a -m "Deploy Target CLuster"
+git push
+```
+
