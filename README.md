@@ -121,3 +121,27 @@ git submodule add https://github.com/openshift-telco/bp-common.lab.diktio.net.gi
 git submodule add <URL_to_your_values_repo> values
 ```
 ## Step 4: Configure the Management cluster via GitOps
+At this point the values repository should be updated and committed **and** all submodules updated for the management cluster.
+Start with a blank repository:
+```bash
+cd <repository_path>/bp-mgmt
+git pull
+
+cd ../bp-common
+git pull
+
+cd ../values
+git pull
+
+cd ../
+git commit -a -m "blueprint sync"
+git push
+```
+To kick off the deployment, you will need to have the Helm 3 CLI tool installed on your machine. This can be downloaded form https://console.redhat.com/openshift/downloads under the "Developer tools" section. 
+
+Now kick off deployment with the deploy.sh script that runs 2 helm install commands to install the Openshift-gitops operator and configure it with a minimal config to start the pull from the repository and start configuring itself.
+
+```bash
+cd <repository_path>
+bash deploy.sh <FQDN_management_cluster>
+```
