@@ -13,7 +13,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 This illustrates how to set-up scalable GitOps structures utilising Helm chart templating with OpenShift-GitOps (ArgoCD) to deploy OpenShift bare-metal clusters through OpenSHift ACM.
 
 # Lab1
-This lab configures a pre-deployed (day-0) cluster as an ACM management hub cluster that deploys a 3-node compact cluster using GitOps and ACM. The environment is connected to the Internet and therefore mirroring is required. Note that the GitOps scripts are contain unused structures intended for a disconnected environment that will be utilised in Lab2.
+This lab configures a pre-deployed (day-0) cluster as an ACM management hub cluster that deploys a 3-node compact cluster using GitOps and ACM. The environment is connected to the Internet and therefore mirroring is not required. Note that the GitOps scripts are contain unused structures intended for a disconnected environment that will be utilised in Lab2.
 
 The topology of  the lab is as illustrated below:
 
@@ -23,6 +23,7 @@ The topology of  the lab is as illustrated below:
 </p>
 
 ---
+
 
 - SNO Management cluster:
     - VM 
@@ -51,6 +52,60 @@ The topology of  the lab is as illustrated below:
         - master3.compact.lab.diktio.net
         - api.compact.lab.diktio.net
         - *.apps.compact.lab.diktio.net
+
+# Lab2
+This lab configures a pre-deployed (day-0) compact 3-node cluster as an ACM management hub cluster that deploys clusters using ACM ZTP-Workflow and/or ACm Assisted-Installer GitOps. The environment is connected to the Internet for the Management cluster but the deployed target clusters are disconnected and therefore mirroring is required.
+
+The topology of  the lab is as illustrated below:
+
+---
+<p align="center">
+  <img src="slides/topology-lab2.png" alt="drawing" width="666"/>
+</p>
+
+---
+
+
+- Compact 3-node Management cluster:
+    - 3 x VMs each with:
+        - 14 x vCPU
+        - 64GB RAM
+        - 128GB OS disk
+    - Deployed by Assisted-Installer SaaS (https://console.redhat.com/openshift/)
+    - OCP 4.10.13
+- SNO Clusters (SNO1, SNO2 and SNO3):
+    - 3 x Supermicro X12 Workstation Motherboard
+        - Intel i9 - 10 core
+        - 64GB RAM
+        - 1TB NVMe for OS
+        - 500GB SSD for ODF-LVM
+        - 2 x 10GE Intel-x710
+- SNO Cluster (SNO11):
+    - 1 x Supermicro X11 Workstation Motherboard
+        - Intel i9 - 8 core
+        - 64GB RAM
+        - 1TB NVMe for OS
+        - 500GB SSD for ODF-LVM
+        - 2 x 10GE Intel-x710
+- HTTP server (optional) to hold some iso images to save downloading down 80Mbps Internet link ;-)
+- DNS server for resolution of lab domain and nodes and VIPs:
+    - Management cluster entries:
+        - master1.ocpgmt.lab.diktio.net
+        - api.ocpmgmt.lab.diktio.net
+        - *.apps.ocpmgmt.lab.diktio.net
+    - Compact cluster entries:
+        - master1.smcdu1.lab.diktio.net
+            - api.smcdu1.lab.diktio.net
+            - *.apps.smcdu1.lab.diktio.net
+        - master1.smcdu2.lab.diktio.net
+            - api.smcdu2.lab.diktio.net
+            - *.apps.smcdu2.lab.diktio.net
+        - master1.smcdu3.lab.diktio.net
+            - api.smcdu3.lab.diktio.net
+            - *.apps.smcdu3.lab.diktio.net
+        - master1.smcdu11.lab.diktio.net
+            - api.smcdu11.lab.diktio.net
+            - *.apps.smcdu11.lab.diktio.net
 
 ## Github account requirements
 The GitOps scripts for this lab expect HTTP token authentication to a personal account on github.com as this is a simple lab set-up.
