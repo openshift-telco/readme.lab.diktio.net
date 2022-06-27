@@ -81,7 +81,7 @@ Parameters you must customise:
 - global.mirror.list [1st entry] - Change to the desired OCP v4.10 release you'd like. Note that anything less than v4.10.9 has not been tested.
 - global.mirror.list.install_mirror_name - Match the global.mirror.list.name you desire to install.
 - global.ai.ssh_key - SSH public key to allow access to nodes.
-- global.ai.pull_secret_name - Please fot NOT change for ACM 2.4.X
+- global.ai.pull_secret_name - Please do NOT change for ACM 2.4.X
 
 ## Step 2: Edit Management CLuster values (/<MGMT_FQDN>/values.yaml)
 
