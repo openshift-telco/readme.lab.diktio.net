@@ -275,7 +275,7 @@ https://github.com/openshift-telco/bp-common.lab.diktio.net
 ## Blueprint for Management (Hub) cluster configuration profile type SNO:
 https://github.com/openshift-telco/bp-mgmt-sno.lab.diktio.net
 
-## Blueprint for target cluster profile type compact (3-node):
+## Blueprint for target cluster profile type compact (DU SNO SuperMicro X12 WS):
 https://github.com/openshift-telco/bp-cluster-sno-du12.lab.diktio.net
 
 ## Management cluster repository:
