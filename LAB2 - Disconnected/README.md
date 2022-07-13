@@ -30,7 +30,7 @@ The topology of  the lab is as illustrated below:
         - 40 x vCPU
         - 80GB RAM
         - 128GB OS disk
-        - 756GB Data disk
+        - 756GB Data disk **NOTE** This data disk/qcow2 must be on a separate physical disk than the OS qcow2 else etcd latencies will blow out, even on NVMe.
     - Deployed by Assisted-Installer SaaS (https://console.redhat.com/openshift/)
     - OCP 4.10.20 tested
 - SNO Clusters (SNO1, SNO2 and SNO3):
