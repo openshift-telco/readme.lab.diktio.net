@@ -1,0 +1,31 @@
+# On IDM server
+
+kinit admin
+
+# SNOACM Zone
+ipa dnszone-add snoacm.lab.diktio.net
+
+ipa host-add --ip-address 198.19.129.21 master1.snoacm.lab.diktio.net
+ipa dnsrecord-add snoacm.lab.diktio.net api         --cname-hostname master1
+ipa dnsrecord-add snoacm.lab.diktio.net api-int  --cname-hostname master1
+ipa dnsrecord-add snoacm.lab.diktio.net "*.apps"  --cname-hostname master1
+ipa dnsrecord-add snoacm.lab.diktio.net lab-registry  --cname-hostname master1
+ipa service-add HTTP/master1.snoacm.lab.diktio.net
+ipa service-add-principal HTTP/master1.snoacm.lab.diktio.net@LAB.DIKTIO.NET HTTP/api.snoacm.lab.diktio.net@LAB.DIKTIO.NET
+ipa service-add-principal HTTP/master1.snoacm.lab.diktio.net@LAB.DIKTIO.NET HTTP/api-int.snoacm.lab.diktio.net@LAB.DIKTIO.NET
+ipa service-add-principal HTTP/master1.snoacm.lab.diktio.net@LAB.DIKTIO.NET HTTP/*.apps.snoacm.lab.diktio.net@LAB.DIKTIO.NET
+ipa service-add-principal HTTP/master1.snoacm.lab.diktio.net@LAB.DIKTIO.NET HTTP/lab-registry.snoacm.lab.diktio.net@LAB.DIKTIO.NET
+
+
+# SMCDU2 Zone
+ipa dnszone-add smcdu2.lab.diktio.net
+
+# API
+ipa host-add --ip-address 198.19.129.212 master1.smcdu2.lab.diktio.net
+ipa dnsrecord-add smcdu2.lab.diktio.net api --cname-hostname master1
+ipa dnsrecord-add smcdu2.lab.diktio.net api-int --cname-hostname master1
+ipa dnsrecord-add smcdu2.lab.diktio.net "*.apps" --cname-hostname master1
+ipa service-add HTTP/master1.smcdu2.lab.diktio.net
+ipa service-add-principal HTTP/master1.smcdu2.lab.diktio.net@LAB.DIKTIO.NET HTTP/api.smcdu2.lab.diktio.net@LAB.DIKTIO.NET
+ipa service-add-principal HTTP/master1.smcdu2.lab.diktio.net@LAB.DIKTIO.NET HTTP/api-int.smcdu2.lab.diktio.net@LAB.DIKTIO.NET
+ipa service-add-principal HTTP/master1.smcdu2.lab.diktio.net@LAB.DIKTIO.NET HTTP/*.apps.smcdu2.lab.diktio.net@LAB.DIKTIO.NET
