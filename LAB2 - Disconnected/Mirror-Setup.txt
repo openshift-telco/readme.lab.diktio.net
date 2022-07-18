@@ -12,7 +12,7 @@ export RELEASE_IMAGE=$(curl -s https://mirror.openshift.com/pub/openshift-v4/cli
 export UPSTREAM_REPO=${RELEASE_IMAGE}
 export LOCAL_REGISTRY='lab-registry.snoacm.lab.diktio.net'
 export LOCAL_REGISTRY_ACCOUNT=nsatsia
-export LOCAL_REPOSITORY='$LOCAL_REGISTRY_ACCOUNT/ocp'${OCP_REL_MAJ}${OCP_REL_MIN}${OCP_REL_MNT}
+export LOCAL_REPOSITORY=$LOCAL_REGISTRY_ACCOUNT'/ocp'${OCP_REL_MAJ}${OCP_REL_MIN}${OCP_REL_MNT}
 export LOCAL_SECRET_JSON=~/pull-secret-update.json
 
 #Mirror OCP images
