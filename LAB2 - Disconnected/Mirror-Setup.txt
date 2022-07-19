@@ -25,7 +25,7 @@ oc adm release mirror \
 
 oc -a $LOCAL_SECRET_JSON image mirror quay.io/openshift-release-dev/ocp-release:${OCP_REL_MAJ}.${OCP_REL_MIN}.${OCP_REL_MNT}-x86_64 $LOCAL_REGISTRY/$LOCAL_REGISTRY_ACCOUNT/openshift-release-dev/ocp-release:${OCP_REL_MAJ}.${OCP_REL_MIN}.${OCP_REL_MNT}-x86_64 --insecure=true
 
-oc -a $LOCAL_SECRET_JSON  image mirror registry.redhat.io/openshift4/ose-tools-rhel8:latest ${LOCAL_REGISTRY}/$LOCAL_REGISTRY_ACCOUNT/ose-tools-rhel8:latest
+oc -a $LOCAL_SECRET_JSON  image mirror registry.redhat.io/openshift4/ose-tools-rhel8:latest ${LOCAL_REGISTRY}/$LOCAL_REGISTRY_ACCOUNT/openshift4/ose-tools-rhel8:latest
 
 
 #Mirror operators
