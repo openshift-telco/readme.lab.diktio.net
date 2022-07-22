@@ -281,8 +281,8 @@ https://github.com/openshift-telco/values-global-lab.diktio.net
 ## Environment wide configurations and Node profiles:
 https://github.com/openshift-telco/bp-common.lab.diktio.net
 
-## Blueprint for Management (Hub) cluster configuration profile type SNO:
-https://github.com/openshift-telco/bp-mgmt-sno.lab.diktio.net
+## Blueprint for Management (Hub) cluster configuration profile type 3-node Compact with external Ceph:
+https://github.com/openshift-telco/bp-mgmt-compact-3.lab.diktio.net.git
 
 ## Blueprint for target cluster profile type compact (DU SNO SuperMicro X12 WS):
 https://github.com/openshift-telco/bp-cluster-sno-du12.lab.diktio.net
