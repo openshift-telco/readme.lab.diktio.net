@@ -274,6 +274,9 @@ git push
 </p>
 
 ---
+## Readme 1st:
+https://github.com/openshift-telco/readme.lab.diktio.net/tree/main/LAB2%20-%20Disconnected%203-node%20MGMT
+
 # Repository Links
 ## Global and Regional values.yaml files:
 https://github.com/openshift-telco/values-global-lab.diktio.net
